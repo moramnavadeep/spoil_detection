@@ -20,8 +20,8 @@ env/
 *.sublime-workspace
 *.sublime-project
 
-# Large Datasets & Cache
-datasets/
+# Large Datasets & Cache (Allow curated sample dataset)
+datasets/ulnnproject/
 data/
 downloads/
 *.tar.gz
