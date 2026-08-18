@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  nutrifresh-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nutrifresh-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - CONFIDENCE_THRESHOLD=0.50
+      - TF_ENABLE_ONEDNN_OPTS=0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
