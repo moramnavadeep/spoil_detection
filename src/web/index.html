@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NutriFresh AI - Food Spoilage & Freshness Detection</title>
+  <meta name="description" content="Production-ready Deep Learning Computer Vision solution for automated food quality classification and spoilage detection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
+        <div class="logo-icon">🌿</div>
+        <div>
+          <h1 class="brand-title">NutriFresh AI</h1>
+          <p class="brand-subtitle">Automated Food Freshness & Spoilage Classification</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="system-status" id="systemStatus">
+          <span class="status-indicator"></span> System Ready
+        </span>
+        <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+        <a href="https://github.com" target="_blank" class="nav-link" id="repoLink">GitHub</a>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="main-grid">
+      <!-- Left Column: Input & Upload -->
+      <section class="card upload-section">
+        <div class="card-header">
+          <h2>Input Image</h2>
+          <span class="badge">JPG, PNG, WEBP</span>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+          <div class="dropzone-content" id="dropzonePrompt">
+            <div class="upload-icon">📸</div>
+            <p class="upload-title">Drag & drop your food image here</p>
+            <p class="upload-hint">or click to browse from device</p>
+            <button type="button" class="btn btn-secondary" id="browseBtn">Choose File</button>
+          </div>
+          <div class="preview-container" id="previewContainer" style="display: none;">
+            <img id="previewImage" alt="Food preview" class="preview-img">
+            <button type="button" class="btn-remove" id="removeBtn" title="Remove image">&times;</button>
+          </div>
+        </div>
+
+        <div class="action-bar">
+          <button type="button" class="btn btn-primary" id="analyzeBtn" disabled>
+            <span class="btn-text">Analyze Freshness</span>
+            <span class="spinner" id="analyzeSpinner" style="display: none;"></span>
+          </button>
+        </div>
+
+        <!-- Sample Images Gallery -->
+        <div class="samples-section">
+          <p class="samples-title">Try with Sample Images:</p>
+          <div class="samples-grid">
+            <button type="button" class="sample-chip" data-src="/samples/fresh_apple.jpg">
+              <span class="chip-badge fresh-dot"></span> Fresh Apple
+            </button>
+            <button type="button" class="sample-chip" data-src="/samples/rotten_apple.webp">
+              <span class="chip-badge rotten-dot"></span> Rotten Apple
+            </button>
+            <button type="button" class="sample-chip" data-src="/samples/sliced_rotten_apple.webp">
+              <span class="chip-badge rotten-dot"></span> Sliced Rotten
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Results & Analysis -->
+      <section class="card results-section">
+        <div class="card-header">
+          <h2>Classification Results</h2>
+          <span class="badge-latency" id="latencyBadge" style="display: none;">-- ms</span>
+        </div>
+
+        <!-- Idle State -->
+        <div class="idle-state" id="idleState">
+          <div class="idle-icon">🔬</div>
+          <p class="idle-title">No Image Analyzed</p>
+          <p class="idle-desc">Upload a food or agricultural item image to inspect quality, classification probability, and freshness metrics.</p>
+        </div>
+
+        <!-- Results Display -->
+        <div class="results-content" id="resultsContent" style="display: none;">
+          <!-- Primary Status Card -->
+          <div class="status-banner" id="statusBanner">
+            <div class="status-icon" id="resultStatusIcon">🍏</div>
+            <div>
+              <div class="status-label" id="resultStatusLabel">FRESH</div>
+              <div class="status-confidence" id="resultConfidenceText">Confidence: 98.5%</div>
+            </div>
+          </div>
+
+          <!-- Probability Bars -->
+          <div class="metrics-card">
+            <h3>Probability Distribution</h3>
+            <div class="prob-row">
+              <div class="prob-header">
+                <span class="prob-name">Fresh</span>
+                <span class="prob-val" id="probFreshVal">0.0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill fill-fresh" id="probFreshBar" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div class="prob-row">
+              <div class="prob-header">
+                <span class="prob-name">Rotten / Spoiled</span>
+                <span class="prob-val" id="probRottenVal">0.0%</span>
+              </div>
+              <div class="prob-track">
+                <div class="prob-fill fill-rotten" id="probRottenBar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Metadata -->
+          <div class="metadata-grid">
+            <div class="meta-item">
+              <span class="meta-key">Inference Time</span>
+              <span class="meta-value" id="metaLatency">-- ms</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Architecture</span>
+              <span class="meta-value">CNN (3-Conv Blocks)</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Input Resolution</span>
+              <span class="meta-value">128 × 128 px</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-key">Model Version</span>
+              <span class="meta-value" id="metaVersion">v1.0.0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Architecture & Features Overview Footer -->
+    <footer class="footer-info">
+      <div class="footer-col">
+        <h4>Model Architecture</h4>
+        <p>3-Stage Deep Convolutional Neural Network with Batch Normalization, ReLU activation, Dropout regularization, and Softmax dense head.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Production Deployment</h4>
+        <p>Built with FastAPI backend, async I/O pipeline, sub-25ms CPU inference, Pydantic type validation, and Docker containerization.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Use Cases</h4>
+        <p>Automated supermarket inventory grading, cold storage freshness monitoring, robotic sorting lines, and consumer food safety.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
