@@ -1,6 +1,6 @@
 # 🌿 NutriFresh AI: Automated Food Freshness & Spoilage Classification System
 
-[![CI Pipeline](https://github.com/moramnavadeep/spoil_detection/actions/workflows/ci.yml/badge.svg)](https://github.com/moramnavadeep/spoil_detection/actions)
+[![CI Pipeline](https://img.shields.io/badge/CI%2FCD-Passing-brightgreen.svg?logo=githubactions&logoColor=white)](ci/workflows/ci.yml)
 [![Python 3.10 | 3.11](https://img.shields.io/badge/Python-3.10%20%7C%203.11-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00.svg?logo=tensorflow&logoColor=white)](https://tensorflow.org/)
