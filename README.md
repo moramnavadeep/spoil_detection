@@ -247,7 +247,11 @@ python -m src.cli.main evaluate --dir samples/ --output results.json
 ---
 
 ## 👥 Contributors
-- **Navadeep** - *Machine Learning & Software Engineer*
+
+- **Moram Navadeep** - *Machine Learning & Software Architecture*
+- **Munagala Devesh** - *Deep Learning & Pipeline Engineering*
+- **Sai Charan** - *Model Training & Data Preprocessing*
+- **Santhosh** - *API Development & System Testing*
 
 ---
 

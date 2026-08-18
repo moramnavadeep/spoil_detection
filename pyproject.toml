@@ -10,7 +10,10 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "Navadeep", email = "developer@example.com" }
+    { name = "Moram Navadeep" },
+    { name = "Munagala Devesh" },
+    { name = "Sai Charan" },
+    { name = "Santhosh" }
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
