@@ -76,18 +76,21 @@ graph TD
 ## 📂 Project Structure
 
 ```
-PythonProject4/
-├── .github/
+spoil_detection/
+├── ci/
 │   └── workflows/
 │       └── ci.yml                 # GitHub Actions automated test workflow
+├── datasets/                      # Dataset files and data resources
 ├── docs/
 │   ├── ARCHITECTURE.md            # Detailed system design & Mermaid diagrams
 │   ├── API.md                     # Comprehensive REST API reference manual
 │   └── SETUP.md                   # Environment setup & troubleshooting guide
+├── model_web/                     # Model-related web resources
 ├── samples/
 │   ├── fresh_apple.jpg            # Sample image: Fresh produce
 │   ├── rotten_apple.webp          # Sample image: Rotten produce
 │   └── sliced_rotten_apple.webp   # Sample image: Sliced spoiled produce
+├── scripts/                       # Utility and project scripts
 ├── src/
 │   ├── __init__.py                # Package version metadata
 │   ├── config.py                  # Environment-driven application settings
@@ -98,37 +101,38 @@ PythonProject4/
 │   │   └── schemas.py             # Pydantic V2 request & response models
 │   ├── cli/
 │   │   ├── __init__.py
-│   │   └── main.py                # Command-line interface tool (predict, eval, serve)
+│   │   └── main.py                # Command-line interface tool
 │   ├── model/
 │   │   ├── __init__.py
 │   │   ├── architecture.py        # CNN architecture definition
-│   │   ├── inference.py           # Thread-safe SpoilDetectionEngine singleton
-│   │   └── preprocessor.py        # Robust image decoder and validator
+│   │   ├── inference.py           # SpoilDetectionEngine inference engine
+│   │   └── preprocessor.py        # Image decoder and preprocessing
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   └── logger.py              # Structured logging utility
 │   └── web/
 │       ├── index.html             # Web dashboard interface
-│       ├── style.css              # Modern responsive CSS design system
-│       └── app.js                 # Drag-and-drop & API async client
+│       ├── style.css              # Responsive CSS design
+│       └── app.js                 # Drag-and-drop & API client
 ├── tests/
 │   ├── __init__.py
-│   ├── conftest.py                # Shared pytest fixtures (TestClient, images)
-│   ├── test_api.py                # REST API endpoint integration tests
-│   ├── test_cli.py                # CLI command execution tests
-│   ├── test_inference.py          # Inference engine unit tests
-│   └── test_preprocessor.py       # Image preprocessing & validation tests
+│   ├── conftest.py                # Shared pytest fixtures
+│   ├── test_api.py                # REST API endpoint tests
+│   ├── test_cli.py                # CLI tests
+│   ├── test_inference.py          # Inference engine tests
+│   └── test_preprocessor.py       # Image preprocessing tests
 ├── .env.example                   # Environment configuration template
-├── .gitignore                     # Git exclusions (datasets, venv, cache)
-├── CONTRIBUTING.md                # Open-source contribution guidelines
-├── Dockerfile                     # Multi-stage production container definition
+├── .gitignore                     # Git exclusions
+├── CONTRIBUTING.md                # Contribution guidelines
+├── Dockerfile                     # Multi-stage production container
 ├── docker-compose.yml             # Container orchestration
 ├── LICENSE                        # MIT License
-├── pyproject.toml                 # Standard packaging metadata
-├── requirements.txt               # Pinned Python dependencies
+├── pyproject.toml                 # Packaging metadata
+├── requirements.txt               # Python dependencies
 ├── spoil_detection_model.h5       # Trained neural network weights
-├── spoil detection.ipynb          # Original exploratory research notebook
-└── train.py                       # Standalone parameterizable training script
+├── spoil_detection_model.keras    # Keras model file
+├── spoil_detection.ipynb          # Exploratory research notebook
+└── train.py                       # Model training script
 ```
 
 ---
