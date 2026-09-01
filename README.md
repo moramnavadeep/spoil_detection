@@ -250,7 +250,7 @@ python -m src.cli.main evaluate --dir samples/ --output results.json
 
 - **Moram Navadeep** - *Machine Learning & Software Architecture*
 - **Munagala Devesh** - *Deep Learning & Pipeline Engineering*
-- **Sai Charan** - *Model Training & Data Preprocessing*
+- **[Sai Charan](https://github.com/attulurisaicharan)** - Model Training & Data Preprocessing
 - **Santhosh** - *API Development & System Testing*
 
 ---
